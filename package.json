@@ -1,0 +1,27 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": "./bin/index.js",
+  "type": "module",
+  "files": [
+    "bin",
+    "package.json"
+  ],
+  "scripts": {
+    "test": "rm -rf ./cli && node ./bin/index.js",
+    "test-g": "rm -rf ./cli && fb-cli"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "ejs": "^3.1.6",
+    "execa": "^5.1.1",
+    "fs": "0.0.1-security",
+    "inquirer": "^8.1.1",
+    "prettier": "^2.3.2"
+  }
+}
