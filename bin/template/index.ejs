@@ -44,7 +44,7 @@ app.use(
 <% if (middleware.router) { %>
 const router = new Router();
 router.get("/", (ctx) => {
-  ctx.body = "hello hei";
+  ctx.body = "hello world";
 });
 app.use(router.routes());
   <% } %>

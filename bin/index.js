@@ -3,28 +3,33 @@
 import fs from "fs"
 import chalk from "chalk"
 import execa from "execa"
-import inquirer from "inquirer";
+import path from "path"
 import createIndexTemplate from "./createIndexTemplate.js"
 import createPackageTemplate from "./createPackageTemplate.js"
 import question from "./question/index.js"
 import { createConfig } from "./config.js"
-
 const answer = await question()
-const inputConfig = createConfig(answer)
+const config = createConfig(answer)
 
-// 创建文件夹
+console.log(chalk.blue(`创建项目文件夹:${config.packageName}`))
+
 fs.mkdirSync(getRootPath())
-// 创建入口文件
-fs.writeFileSync(`${getRootPath()}/index.js`, createIndexTemplate(inputConfig))
-// 创建package.json
-fs.writeFileSync(`${getRootPath()}/package.json`, createPackageTemplate(inputConfig))
 
-// 安装依赖
-execa("yarn", {
+fs.writeFileSync(`${getRootPath()}/index.js`, createIndexTemplate(config))
+
+fs.writeFileSync(`${getRootPath()}/package.json`, createPackageTemplate(config))
+
+const res = await execa("yarn", {
     cwd: getRootPath(),
     stdio: [2, 2, 2]
 })
+
+console.log(chalk.blue(`
+        cd ${config.packageName} 
+        npm run serve
+`));
+
 function getRootPath() {
-    return './cli'
+    return path.resolve(process.cwd(), config.packageName)
 }
 
