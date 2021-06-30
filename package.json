@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "rm -rf ./cli && node ./bin/index.js",
-    "test-g": "rm -rf ./cli && fb-cli"
+    "test-g": "rm -rf ./cli && cli"
   },
   "keywords": [],
   "author": "",
